@@ -2,11 +2,23 @@ import { createSelector } from 'reselect';
 
 const selectApp = (state) => state.get('app');
 
-const displayOrder = () => createSelector(
+const getDisplayOrder = () => createSelector(
   selectApp,
   (substate) => substate.get('order')
 );
 
+const getLoadingStatus = () => createSelector(
+  selectApp,
+  (substate) => substate.get('loaded')
+);
+
+const getErrorStatus = () => createSelector(
+  selectApp,
+  (substate) => substate.get('error')
+);
+
 export {
-  displayOrder,
+  getDisplayOrder,
+  getLoadingStatus,
+  getErrorStatus,
 };

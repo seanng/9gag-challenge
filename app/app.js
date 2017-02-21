@@ -16,6 +16,7 @@ import 'sanitize.css/sanitize.css';
 
 // Import root app
 import App from 'containers/App';
+import appSagas from 'containers/App/sagas';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -28,6 +29,7 @@ import 'file-loader?name=[name].[ext]!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './store';
+import { getAsyncInjectors } from './utils/asyncInjectors';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -37,6 +39,10 @@ import './global-styles';
 
 const initialState = {};
 const store = configureStore(initialState);
+const { injectSagas } = getAsyncInjectors(store);
+
+// Hook up app sagas
+injectSagas(appSagas);
 
 const render = (messages) => {
   ReactDOM.render(

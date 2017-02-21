@@ -16,7 +16,7 @@ const Feed = ({ order }) => (
 
 
 Feed.propTypes = {
-  order: React.PropTypes.func,
+  order: React.PropTypes.string,
 };
 
 export default Feed;

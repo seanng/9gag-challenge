@@ -10,4 +10,7 @@
  */
 
 export const DEFAULT_LOCALE = 'en';
+export const LOAD_APP = 'App/LOAD_APP';
+export const LOAD_SUCCESS = 'App/LOAD_SUCCESS';
+export const LOAD_FAILURE = 'App/LOAD_FAILURE';
 export const SORT_BY = 'App/SORT_BY';

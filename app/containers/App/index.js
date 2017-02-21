@@ -20,12 +20,25 @@ import FilterBar from 'components/FilterBar';
 import Feed from 'components/Feed';
 
 // Redux
-import { sortBy } from './actions';
-import { displayOrder } from './selectors';
+import { sortBy, loadApp } from './actions';
+import { getDisplayOrder, getLoadingStatus, getErrorStatus } from './selectors';
 
 class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
-  render() {
+  componentWillMount() {
+    console.log('component will mount.')
+    this.props.loadApp()
+  }
+
+  renderLoading() {
+    return (
+      <div>
+        Loading...
+      </div>
+    );
+  }
+
+  renderLoaded() {
     return (
       <div>
         <FilterBar sortBy={this.props.sortBy} />
@@ -33,21 +46,38 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
       </div>
     );
   }
+
+  renderError() {
+    return (
+      <div>
+        There was an error loading the app.
+      </div>
+    );
+  }
+
+  render() {
+    return this.renderLoaded()
+    // return this.props.isLoaded ? this.renderLoaded() : this.renderLoading()
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     sortBy: (order) => dispatch(sortBy(order)),
+    loadApp: () => dispatch(loadApp()),
   };
 };
 
 const mapStateToProps = createStructuredSelector({
-  order: displayOrder(),
+  order: getDisplayOrder(),
+  isLoaded: getLoadingStatus(),
+  hasErrors: getErrorStatus(),
 });
 
 App.propTypes = {
   sortBy: React.PropTypes.func,
   order: React.PropTypes.string,
+  isLoaded: React.PropTypes.bool,
 };
 
 // Wrap the component to inject dispatch and state into it

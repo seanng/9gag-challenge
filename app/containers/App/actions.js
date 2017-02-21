@@ -17,6 +17,9 @@
 
 import {
   SORT_BY,
+  LOAD_APP,
+  LOAD_SUCCESS,
+  LOAD_FAILURE,
 } from './constants';
 
 /**
@@ -24,6 +27,27 @@ import {
  *
  * @return {object} An action object with a type of LOAD_REPOS
  */
+
+export function loadApp() {
+  return {
+    type: LOAD_APP,
+  };
+}
+
+export function loadSuccess(data) {
+  return {
+    type: LOAD_SUCCESS,
+    data
+  };
+}
+
+export function loadFailure(response) {
+  return {
+    type: LOAD_FAILURE,
+    response
+  };
+}
+
 export function sortBy(order) {
   return {
     type: SORT_BY,
