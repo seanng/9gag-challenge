@@ -38,7 +38,6 @@ function appReducer(state = initialState, action) {
 
     case LOAD_SUCCESS:
       return state
-        .set()
         .set('loaded', true)
         .set('error', false)
         .set('data', action.data);

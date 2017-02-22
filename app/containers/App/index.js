@@ -56,8 +56,8 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
   }
 
   render() {
-    return this.renderLoaded()
-    // return this.props.isLoaded ? this.renderLoaded() : this.renderLoading()
+    // return this.renderLoaded()
+    return this.props.isLoaded ? this.renderLoaded() : this.renderLoading()
   }
 }
 
